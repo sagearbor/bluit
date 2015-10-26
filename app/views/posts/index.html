@@ -3,7 +3,18 @@
 <p>
   <%= @message %>
   <br>
-  <% @posts.each do |post| %>
-    <%= post.title %>
+  <ul class="posts">
+    <% @posts.each do |post| %>
+    <div class="title">
+  <li><a href="<%= post.link %>">"<%= post.title %>" </a>
+  </div>
+  <div class="tagline" title="<%= post.created_at %>">
+    submitted <%= time_ago_in_words post.created_at %> ago
+    <br>
+    submitted <%= time_ago_in_words post.created_at %> ago
+  </div>
+  </li>
+  <li><%= post.link %></li>
   <% end %>
+</ul>
 </p>
