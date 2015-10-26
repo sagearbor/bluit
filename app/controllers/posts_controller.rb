@@ -1,6 +1,5 @@
 class PostsController < ApplicationController
   def index
-    @message = 'I <3 Ruby'
     @posts = Post.all
   end
 
@@ -9,12 +8,13 @@ class PostsController < ApplicationController
   end
 
   def create
-    post = Post.new params.require(:post).permit(:title, :link)
-    post.save
-    # REDIRECT back to route after create
-    # redirect_to '/'
-    #redirect_to new_post_path
-    redirect_to posts_path
-  end
+    @post = Post.new params.require(:post).permit(:title, :link)
 
+    if @post.save
+      redirect_to posts_path, notice: "Thanks for your post!"
+    else
+      flash.now[:alert] = @post.errors.full_messages
+      render :new
+    end
+  end
 end
