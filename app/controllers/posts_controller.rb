@@ -1,8 +1,12 @@
 class PostsController < ApplicationController
-  before_action :find_post, only: [:edit, :update]
+  before_action :find_post, only: [:show, :edit, :update, :destroy]
 
   def index
     @posts = Post.all
+  end
+
+
+  def show
   end
 
   def new
@@ -10,7 +14,6 @@ class PostsController < ApplicationController
   end
 
   def edit
-    #@post = Post.find params[:id]
   end
 
   def create
@@ -25,12 +28,19 @@ class PostsController < ApplicationController
   end
 
   def update
-    #@post = Post.find params[:id]
     if @post.update post_params
-      redirect_to posts_path, notice: "Your changes have been saved"
+      redirect_to posts_path, notice: "Your changes have been saved."
     else
       flash.now[:alert] = @post.errors.full_messages
       render :edit
+    end
+  end
+
+  def destroy
+    if @post.destroy
+      redirect_to posts_path, notice: "Your post has been removed."
+    else
+      redirect_to posts_path, alert: "We were unable to remove that post."
     end
   end
 
@@ -43,9 +53,4 @@ class PostsController < ApplicationController
   def post_params
     params.require(:post).permit(:title, :link)
   end
-
-  #protected
-
-
-
 end

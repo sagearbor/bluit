@@ -1,20 +1,12 @@
 <h1>Posts</h1>
 
-<p>
-  <%= @message %>
-  <br>
-  <ul class="posts">
-    <% @posts.each do |post| %>
-    <div class="title">
-  <li><a href="<%= post.link %>">"<%= post.title %>" </a>
-  </div>
-  <div class="tagline" title="<%= post.created_at %>">
-    submitted <%= time_ago_in_words post.created_at %> ago
-    <br>
-    submitted <%= time_ago_in_words post.created_at %> ago
-  </div>
+<ul class="posts">
+<% @posts.each do |post| %>
+  <li>
+
+    <%= render 'slug', post: post %>
+    <%= render 'actions', post: post, display_details: true %>
+
   </li>
-  <li><%= post.link %></li>
-  <% end %>
+<% end %>
 </ul>
-</p>
