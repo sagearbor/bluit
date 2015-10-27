@@ -1,0 +1,12 @@
+<h1>Categories</h1>
+
+<ul class="categories">
+<% @categories.each do |category| %>
+  <li>
+
+    <%= render 'slug', category: category %>
+    <%= render 'actions', category: category, display_details: true %>
+
+  </li>
+<% end %>
+</ul>

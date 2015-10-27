@@ -16,6 +16,11 @@ class PostsController < ApplicationController
   def edit
   end
 
+  def category
+    @category = Category.new
+  end
+
+
   def create
     @post = Post.new post_params
 

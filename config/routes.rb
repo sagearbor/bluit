@@ -2,6 +2,9 @@ Rails.application.routes.draw do
   resources :posts
   root 'posts#index'
 
+  resources :categories
+
+
 
   ### BY DEFAULT BELOW IS COMMENTED OUT
   # The priority is based upon order of creation: first created -> highest priority.
