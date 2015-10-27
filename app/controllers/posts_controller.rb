@@ -7,6 +7,10 @@ class PostsController < ApplicationController
 
 
   def show
+    # Post.find_each do |p|
+    #   p.category_id = 1
+    #   p.save
+    # end
   end
 
   def new
@@ -56,6 +60,6 @@ class PostsController < ApplicationController
   end
 
   def post_params
-    params.require(:post).permit(:title, :link)
+    params.require(:post).permit(:title, :link, :category_id)
   end
 end
