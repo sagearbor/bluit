@@ -1,12 +1,14 @@
 <h1>Posts</h1>
 
-<ul class="posts">
+<%= render 'list', posts: @posts %>
+
+<!-- <ul class="posts">
 <% @posts.each do |post| %>
   <li>
-
     <%= render 'slug', post: post %>
     <%= render 'actions', post: post, display_details: true %>
-
   </li>
 <% end %>
 </ul>
+
+<%= will_paginate @posts %> -->

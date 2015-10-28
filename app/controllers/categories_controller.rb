@@ -1,8 +1,9 @@
 class CategoriesController < ApplicationController
-before_action :find_category, only: [:show]
+  before_action :find_category, only: [:show]
 
-def show
-end
+  def show
+    @posts = @category.posts.paginate(page: params[:page])
+  end
 
   def new
     @category = Category.new
@@ -25,9 +26,6 @@ end
   end
 
   def find_category
-    @category = Category.find params[:id]
-    #Something wrong didnt work below
-    #@category = Category.includes(:posts).find params[:id]
+    @category = Category.includes(:posts).find(params[:id])
   end
-
 end

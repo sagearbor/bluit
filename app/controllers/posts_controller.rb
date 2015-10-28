@@ -2,15 +2,11 @@ class PostsController < ApplicationController
   before_action :find_post, only: [:show, :edit, :update, :destroy]
 
   def index
-    @posts = Post.all
+    @posts = Post.includes(:category).paginate(page: params[:page])
   end
 
 
   def show
-    # Post.find_each do |p|
-    #   p.category_id = 1
-    #   p.save
-    # end
   end
 
   def new
@@ -19,11 +15,6 @@ class PostsController < ApplicationController
 
   def edit
   end
-
-  def category
-    @category = Category.new
-  end
-
 
   def create
     @post = Post.new post_params
@@ -56,7 +47,7 @@ class PostsController < ApplicationController
   private
 
   def find_post
-    @post = Post.find params[:id]
+    @post = Post.find(params[:id])
   end
 
   def post_params
