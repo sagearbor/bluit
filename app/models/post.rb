@@ -4,5 +4,5 @@ class Post < ActiveRecord::Base
   #Map a number to text with enum
   #enum :post_type: [:link, :text]
   belongs_to :category
-
+  default_scope { order(created_at: :desc) }
 end
